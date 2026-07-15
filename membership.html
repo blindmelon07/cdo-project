@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Membership - GSAC</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .membership-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .form-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--light-gray);
+    }
+    .form-card h3 { color: var(--primary); margin-bottom: 1.5rem; font-size: 1.3rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    /* Steps indicator */
+    .form-steps { display: flex; gap: 0; margin-bottom: 2rem; }
+    .form-step {
+      flex: 1; text-align: center; padding: 0.75rem;
+      background: var(--light-gray); color: var(--gray);
+      font-size: 0.8rem; font-weight: 600; border-right: 1px solid #ccc;
+    }
+    .form-step:first-child { border-radius: 8px 0 0 8px; }
+    .form-step:last-child { border-radius: 0 8px 8px 0; border-right: none; }
+    .form-step.active { background: var(--primary); color: white; }
+    .form-step.done { background: var(--success); color: white; }
+
+    .form-panel { display: none; }
+    .form-panel.active { display: block; }
+
+    /* Payment section */
+    .payment-methods { display: flex; flex-direction: column; gap: 1rem; margin: 1rem 0; }
+    .payment-option {
+      border: 2px solid var(--light-gray);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .payment-option:hover { border-color: var(--primary); }
+    .payment-option.selected { border-color: var(--primary); background: var(--light-bg); }
+    .payment-option input[type="radio"] { accent-color: var(--primary); width: 16px; height: 16px; }
+    .payment-logo { font-size: 1.5rem; width: 40px; text-align: center; }
+    .payment-label h4 { font-size: 0.9rem; margin-bottom: 0.2rem; }
+    .payment-label p { font-size: 0.78rem; color: var(--gray); }
+
+    .payment-summary {
+      background: var(--light-bg);
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin: 1rem 0;
+    }
+    .payment-summary h4 { color: var(--primary); margin-bottom: 0.75rem; font-size: 0.95rem; }
+    .summary-row {
+      display: flex; justify-content: space-between;
+      font-size: 0.9rem; padding: 0.35rem 0;
+      border-bottom: 1px solid var(--light-gray);
+    }
+    .summary-row:last-child { border-bottom: none; font-weight: 700; color: var(--primary); font-size: 1rem; }
+
+    .gcash-qr {
+      text-align: center;
+      padding: 1.5rem;
+      background: white;
+      border-radius: 10px;
+      border: 2px dashed var(--primary);
+      margin: 1rem 0;
+    }
+    .gcash-qr .qr-box {
+      width: 160px;
+      height: 160px;
+      background: var(--light-bg);
+      margin: 0 auto 1rem;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: var(--gray);
+      border: 2px solid var(--primary);
+    }
+    .gcash-qr p { font-size: 0.85rem; color: var(--gray); }
+    .gcash-qr strong { color: var(--primary); display: block; margin-bottom: 0.5rem; }
+
+    /* Sidebar */
+    .sidebar-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 1.75rem;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--light-gray);
+      margin-bottom: 1.5rem;
+    }
+    .sidebar-card h4 { color: var(--primary); margin-bottom: 1rem; font-size: 1rem; }
+    .req-list { list-style: none; }
+    .req-list li {
+      display: flex; gap: 0.75rem; padding: 0.5rem 0;
+      border-bottom: 1px solid var(--light-gray);
+      font-size: 0.9rem; color: var(--dark);
+    }
+    .req-list li:last-child { border-bottom: none; }
+    .req-list li span { font-size: 1rem; }
+
+    .fee-card {
+      background: var(--primary);
+      color: white;
+      border-radius: 16px;
+      padding: 1.75rem;
+      text-align: center;
+    }
+    .fee-card h4 { font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.5rem; }
+    .fee-amount { font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 0.25rem; }
+    .fee-card p { font-size: 0.8rem; opacity: 0.75; }
+
+    /* Success */
+    .success-panel {
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+    .success-panel .big-icon { font-size: 5rem; margin-bottom: 1rem; }
+    .success-panel h2 { color: var(--success); font-size: 2rem; margin-bottom: 0.75rem; }
+    .success-panel p { color: var(--gray); max-width: 500px; margin: 0 auto 1.5rem; }
+    .ref-box {
+      background: var(--light-bg);
+      border-radius: 10px;
+      padding: 1rem 1.5rem;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+    .ref-box p { font-size: 0.85rem; color: var(--gray); margin-bottom: 0.25rem; }
+    .ref-box strong { font-size: 1.2rem; color: var(--primary); }
+
+    @media (max-width: 900px) {
+      .membership-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo (3).png" alt="GSAC Logo" />
+        <span>Gubat Saint Anthony Cooperative</span>
+      </a>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="pmes.html">PMES</a></li>
+        <li><a href="membership.html" class="nav-cta active">Join Now</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-banner">
+    <h1>Apply for Membership</h1>
+    <p>Join the GSAC family — complete your application and pay your membership fee online.</p>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="membership-grid">
+
+        <!-- FORM -->
+        <div class="form-card">
+          <div class="form-steps">
+            <div class="form-step active" id="fstep1">1. Personal Info</div>
+            <div class="form-step" id="fstep2">2. Payment</div>
+            <div class="form-step" id="fstep3">3. Done</div>
+          </div>
+
+          <!-- STEP 1: PERSONAL INFO -->
+          <div class="form-panel active" id="fpanel1">
+            <h3>Personal Information</h3>
+            <div class="alert alert-info">
+              📋 Make sure you have completed the <a href="pmes.html" style="color:var(--primary); font-weight:700;">PMES</a> before applying for membership.
+            </div>
+            <form id="memberForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Last Name *</label>
+                  <input type="text" id="lastName" placeholder="Dela Cruz" required />
+                </div>
+                <div class="form-group">
+                  <label>First Name *</label>
+                  <input type="text" id="firstName" placeholder="Juan" required />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Middle Name</label>
+                  <input type="text" id="middleName" placeholder="Santos" />
+                </div>
+                <div class="form-group">
+                  <label>Date of Birth *</label>
+                  <input type="date" id="dob" required />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Sex *</label>
+                  <select id="sex" required>
+                    <option value="">-- Select --</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Civil Status *</label>
+                  <select id="civilStatus" required>
+                    <option value="">-- Select --</option>
+                    <option>Single</option>
+                    <option>Married</option>
+                    <option>Widowed</option>
+                    <option>Separated</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Complete Address *</label>
+                <input type="text" id="address" placeholder="Barangay, Gubat, Sorsogon" required />
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Mobile Number *</label>
+                  <input type="tel" id="mobile" placeholder="09XX-XXX-XXXX" required />
+                </div>
+                <div class="form-group">
+                  <label>Email Address</label>
+                  <input type="email" id="email" placeholder="email@example.com" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Occupation / Source of Income *</label>
+                <input type="text" id="occupation" placeholder="e.g. Farmer, Employee, Business Owner" required />
+              </div>
+              <div class="form-group">
+                <label>
+                  <input type="checkbox" id="pmesDone" style="margin-right:0.5rem; accent-color:var(--primary);" required />
+                  I have completed the GSAC Pre-Membership Education Seminar (PMES).
+                </label>
+              </div>
+              <div class="form-group">
+                <label>
+                  <input type="checkbox" id="termsCheck" style="margin-right:0.5rem; accent-color:var(--primary);" required />
+                  I agree to the cooperative's By-Laws, rules, and regulations.
+                </label>
+              </div>
+              <button type="button" class="btn btn-blue" onclick="goToPayment()" style="width:100%;">Continue to Payment &rarr;</button>
+            </form>
+          </div>
+
+          <!-- STEP 2: PAYMENT -->
+          <div class="form-panel" id="fpanel2">
+            <h3>Membership Fee Payment</h3>
+
+            <div class="payment-summary">
+              <h4>Payment Summary</h4>
+              <div class="summary-row"><span>Membership Fee</span><span>₱100.00</span></div>
+              <div class="summary-row"><span>Minimum Share Capital</span><span>₱500.00</span></div>
+              <div class="summary-row"><span>Minimum Savings Deposit</span><span>₱200.00</span></div>
+              <div class="summary-row"><span>TOTAL</span><span>₱800.00</span></div>
+            </div>
+
+            <p style="font-size:0.9rem; color:var(--gray); margin-bottom:1rem;">Select your preferred payment method:</p>
+
+            <div class="payment-methods">
+              <label class="payment-option" id="payopt-gcash" onclick="selectPayment('gcash')">
+                <input type="radio" name="payMethod" value="gcash" />
+                <div class="payment-logo">💚</div>
+                <div class="payment-label">
+                  <h4>GCash</h4>
+                  <p>Pay via GCash QR code or account transfer</p>
+                </div>
+              </label>
+              <label class="payment-option" id="payopt-maya" onclick="selectPayment('maya')">
+                <input type="radio" name="payMethod" value="maya" />
+                <div class="payment-logo">💜</div>
+                <div class="payment-label">
+                  <h4>Maya (PayMaya)</h4>
+                  <p>Pay via Maya wallet or QR code</p>
+                </div>
+              </label>
+              <label class="payment-option" id="payopt-card" onclick="selectPayment('card')">
+                <input type="radio" name="payMethod" value="card" />
+                <div class="payment-logo">💳</div>
+                <div class="payment-label">
+                  <h4>Credit / Debit Card</h4>
+                  <p>Visa, Mastercard accepted via PayMongo</p>
+                </div>
+              </label>
+              <label class="payment-option" id="payopt-counter" onclick="selectPayment('counter')">
+                <input type="radio" name="payMethod" value="counter" />
+                <div class="payment-logo">🏢</div>
+                <div class="payment-label">
+                  <h4>Pay at the Cooperative Office</h4>
+                  <p>Visit GSAC office during business hours</p>
+                </div>
+              </label>
+            </div>
+
+            <!-- Payment detail panels -->
+            <div id="paydetail-gcash" style="display:none;">
+              <div class="gcash-qr">
+                <strong>Scan to Pay via GCash</strong>
+                <div class="qr-box">📱 QR Code<br>Placeholder<br>(Replace with actual)</div>
+                <p>GCash Number: <strong>09XX-XXX-XXXX</strong></p>
+                <p>Account Name: <strong>Gubat Saint Anthony Coop</strong></p>
+                <p style="margin-top:0.5rem; font-size:0.78rem; color:var(--danger);">After payment, take a screenshot and upload below as proof.</p>
+              </div>
+              <div class="form-group">
+                <label>GCash Reference Number *</label>
+                <input type="text" id="gcashRef" placeholder="Enter GCash reference number" />
+              </div>
+              <div class="form-group">
+                <label>Upload Payment Screenshot</label>
+                <input type="file" accept="image/*" />
+              </div>
+            </div>
+
+            <div id="paydetail-maya" style="display:none;">
+              <div class="gcash-qr">
+                <strong>Scan to Pay via Maya</strong>
+                <div class="qr-box">📱 QR Code<br>Placeholder<br>(Replace with actual)</div>
+                <p>Maya Number: <strong>09XX-XXX-XXXX</strong></p>
+                <p>Account Name: <strong>Gubat Saint Anthony Coop</strong></p>
+                <p style="margin-top:0.5rem; font-size:0.78rem; color:var(--danger);">After payment, take a screenshot and upload below as proof.</p>
+              </div>
+              <div class="form-group">
+                <label>Maya Reference Number *</label>
+                <input type="text" id="mayaRef" placeholder="Enter Maya reference number" />
+              </div>
+              <div class="form-group">
+                <label>Upload Payment Screenshot</label>
+                <input type="file" accept="image/*" />
+              </div>
+            </div>
+
+            <div id="paydetail-card" style="display:none;">
+              <div class="alert alert-info">
+                💳 Card payment is processed securely via <strong>PayMongo</strong>. You will be redirected to the payment page after clicking Pay Now.
+              </div>
+              <!-- PayMongo Integration Note:
+                   To activate card payments:
+                   1. Sign up at paymongo.com
+                   2. Get your Public Key from the dashboard
+                   3. Use PayMongo's Payment Links API or JS SDK
+                   4. Replace the button below with your PayMongo checkout link
+              -->
+              <div class="form-group">
+                <label>Cardholder Name</label>
+                <input type="text" placeholder="Name as it appears on card" />
+              </div>
+              <div class="form-group">
+                <label>Card Number</label>
+                <input type="text" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" id="cardNum" oninput="formatCard(this)" />
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Expiry Date</label>
+                  <input type="text" placeholder="MM/YY" maxlength="5" />
+                </div>
+                <div class="form-group">
+                  <label>CVV</label>
+                  <input type="password" placeholder="***" maxlength="3" />
+                </div>
+              </div>
+            </div>
+
+            <div id="paydetail-counter" style="display:none;">
+              <div class="alert alert-info">
+                🏢 Your application will be submitted. Please visit the GSAC office to complete payment.<br><br>
+                <strong>Office Hours:</strong> Monday – Friday, 8:00 AM – 5:00 PM<br>
+                <strong>Location:</strong> Gubat, Sorsogon, Philippines
+              </div>
+            </div>
+
+            <div style="display:flex; gap:1rem; margin-top:1.5rem;">
+              <button class="btn btn-outline" style="background:var(--light-gray);color:var(--dark);" onclick="goBackToForm()">← Back</button>
+              <button class="btn btn-primary" onclick="submitApplication()" style="flex:1;">Submit Application & Pay</button>
+            </div>
+          </div>
+
+          <!-- STEP 3: SUCCESS -->
+          <div class="form-panel" id="fpanel3">
+            <div class="success-panel">
+              <div class="big-icon">🎉</div>
+              <h2>Application Submitted!</h2>
+              <p>Your membership application has been received. GSAC will review and process your application within 3–5 business days.</p>
+              <div class="ref-box">
+                <p>Application Reference Number</p>
+                <strong id="refNumber">GSAC-2026-00000</strong>
+              </div>
+              <p>A confirmation will be sent to your email/mobile once approved. Please keep your reference number.</p>
+              <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:1rem;">
+                <a href="index.html" class="btn btn-blue">Back to Home</a>
+                <button class="btn btn-primary" onclick="window.print()">🖨️ Print Application</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <div>
+          <div class="fee-card">
+            <h4>Initial Investment</h4>
+            <div class="fee-amount">₱800</div>
+            <p>Membership Fee + Share Capital + Initial Savings</p>
+          </div>
+          <br>
+          <div class="sidebar-card">
+            <h4>📋 Requirements</h4>
+            <ul class="req-list">
+              <li><span>✅</span>Completed PMES (online or in-person)</li>
+              <li><span>🪪</span>Valid Government-issued ID</li>
+              <li><span>📸</span>1x1 or 2x2 ID photo</li>
+              <li><span>📄</span>Filled membership application form</li>
+              <li><span>💰</span>Initial payment of ₱800</li>
+            </ul>
+          </div>
+          <div class="sidebar-card">
+            <h4>🎁 Member Benefits</h4>
+            <ul class="req-list">
+              <li><span>📈</span>Annual dividends & patronage refund</li>
+              <li><span>🏦</span>Access to affordable loans</li>
+              <li><span>💰</span>Savings account with interest</li>
+              <li><span>🗳️</span>Right to vote in general assembly</li>
+              <li><span>🛡️</span>Death aid & loan insurance</li>
+            </ul>
+          </div>
+          <div class="sidebar-card">
+            <h4>❓ Need Help?</h4>
+            <p style="font-size:0.9rem; color:var(--gray); margin-bottom:0.75rem;">Have questions about membership? Contact us:</p>
+            <p style="font-size:0.9rem;">📞 (056) XXX-XXXX</p>
+            <p style="font-size:0.9rem; margin-top:0.4rem;">✉️ gsac@example.com</p>
+            <a href="contact.html" class="btn btn-blue" style="margin-top:1rem; display:inline-block; font-size:0.9rem; padding:0.6rem 1.25rem;">Contact Us</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>GSAC</h4>
+        <p>Gubat Saint Anthony Cooperative — serving the community of Gubat, Sorsogon with integrity and dedication.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="pmes.html">PMES</a></li>
+          <li><a href="membership.html">Membership</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <p>📍 Gubat, Sorsogon, Philippines</p><br>
+        <p>📞 (056) XXX-XXXX</p><br>
+        <p>✉️ gsac@example.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Gubat Saint Anthony Cooperative (GSAC). All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    let selectedPayment = null;
+
+    function selectPayment(method) {
+      selectedPayment = method;
+      ['gcash','maya','card','counter'].forEach(m => {
+        document.getElementById('payopt-' + m).classList.remove('selected');
+        document.getElementById('paydetail-' + m).style.display = 'none';
+      });
+      document.getElementById('payopt-' + method).classList.add('selected');
+      document.getElementById('paydetail-' + method).style.display = 'block';
+    }
+
+    function goToPayment() {
+      const form = document.getElementById('memberForm');
+      const required = form.querySelectorAll('[required]');
+      let valid = true;
+      required.forEach(el => {
+        if (el.type === 'checkbox' && !el.checked) valid = false;
+        if (el.type !== 'checkbox' && !el.value.trim()) valid = false;
+      });
+      if (!valid) { alert('Please fill in all required fields and check the required boxes.'); return; }
+      showFPanel(2);
+    }
+
+    function goBackToForm() { showFPanel(1); }
+
+    function submitApplication() {
+      if (!selectedPayment) { alert('Please select a payment method.'); return; }
+      const refNum = 'GSAC-2026-' + String(Math.floor(10000 + Math.random() * 90000));
+      document.getElementById('refNumber').textContent = refNum;
+      showFPanel(3);
+    }
+
+    function showFPanel(num) {
+      document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('fpanel' + num).classList.add('active');
+      document.querySelectorAll('.form-step').forEach((s, i) => {
+        s.classList.remove('active', 'done');
+        if (i + 1 < num) s.classList.add('done');
+        if (i + 1 === num) s.classList.add('active');
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function formatCard(el) {
+      let v = el.value.replace(/\D/g, '').substring(0, 16);
+      el.value = v.replace(/(.{4})/g, '$1 ').trim();
+    }
+  </script>
+</body>
+</html>

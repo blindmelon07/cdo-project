@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GSAC - Gubat Saint Anthony Cooperative</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .features-section { background: var(--light-bg); }
+    .news-section { background: var(--white); }
+
+    .news-card { border-left: 4px solid var(--primary); }
+    .news-card .date { font-size: 0.8rem; color: var(--gray); margin-bottom: 0.4rem; }
+    .news-card h3 { font-size: 1rem; margin-bottom: 0.4rem; }
+
+    .cta-section {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: var(--white);
+      text-align: center;
+      padding: 80px 2rem;
+    }
+    .cta-section h2 { font-size: 2rem; font-weight: 800; margin-bottom: 1rem; }
+    .cta-section p { opacity: 0.9; margin-bottom: 2rem; font-size: 1.05rem; }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .pmes-banner {
+      background: var(--accent);
+      padding: 18px 2rem;
+      text-align: center;
+    }
+    .pmes-banner p {
+      color: var(--primary-dark);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .pmes-banner a {
+      color: var(--primary-dark);
+      font-weight: 700;
+      text-decoration: underline;
+      margin-left: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo (3).png" alt="GSAC Logo" />
+        <span>Gubat Saint Anthony Cooperative</span>
+      </a>
+      <div class="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="pmes.html">PMES</a></li>
+        <li><a href="membership.html" class="nav-cta">Join Now</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PMES BANNER -->
+  <div class="pmes-banner">
+    <p>🎓 New to GSAC? Complete your Pre-Membership Education Seminar (PMES) online!
+      <a href="pmes.html">Start PMES &rarr;</a>
+    </p>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Your Trusted <span>Credit & Savings</span> Cooperative</h1>
+      <p>Gubat Saint Anthony Cooperative (GSAC) — empowering the community of Gubat through cooperative values, financial services, and mutual support.</p>
+      <div class="hero-buttons">
+        <a href="membership.html" class="btn btn-primary">Become a Member</a>
+        <a href="services.html" class="btn btn-outline">Our Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-section">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <h3><span class="stat-number" data-target="1500" data-suffix="+">0</span></h3>
+        <p>Active Members</p>
+      </div>
+      <div class="stat-item">
+        <h3><span class="stat-number" data-target="20" data-suffix="">0</span>+ yrs</h3>
+        <p>Years of Service</p>
+      </div>
+      <div class="stat-item">
+        <h3>₱<span class="stat-number" data-target="5" data-suffix="M+">0</span></h3>
+        <p>Loans Released</p>
+      </div>
+      <div class="stat-item">
+        <h3><span class="stat-number" data-target="100" data-suffix="%">0</span></h3>
+        <p>Member-Owned</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section class="features-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Why Choose GSAC?</h2>
+        <div class="section-divider"></div>
+        <p>We provide reliable financial services backed by cooperative principles and community trust.</p>
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">💰</div>
+          <h3>Savings Account</h3>
+          <p>Grow your savings with competitive interest rates and flexible deposit options tailored for every member.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🏦</div>
+          <h3>Credit & Loans</h3>
+          <p>Access affordable loans for personal, business, and emergency needs with easy repayment terms.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🎓</div>
+          <h3>Online PMES</h3>
+          <p>Complete your Pre-Membership Education Seminar online at your own pace, anytime and anywhere.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🤝</div>
+          <h3>Community Focus</h3>
+          <p>As a cooperative, profits are shared among members. We grow together as a community.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔒</div>
+          <h3>Secure & Trusted</h3>
+          <p>Regulated and registered with the Cooperative Development Authority (CDA) of the Philippines.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📱</div>
+          <h3>Easy Membership</h3>
+          <p>Apply and pay your membership fee online. Fast, convenient, and hassle-free registration.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWS -->
+  <section class="news-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Latest News & Announcements</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="card-grid">
+        <div class="card news-card">
+          <p class="date">July 10, 2026</p>
+          <h3>Online PMES Now Available</h3>
+          <p>Members can now complete the Pre-Membership Education Seminar online. Watch the video and pass the quiz to qualify for membership.</p>
+        </div>
+        <div class="card news-card">
+          <p class="date">June 25, 2026</p>
+          <h3>Annual General Assembly 2026</h3>
+          <p>GSAC will hold its Annual General Assembly on August 15, 2026. All members are encouraged to attend and participate.</p>
+        </div>
+        <div class="card news-card">
+          <p class="date">June 1, 2026</p>
+          <h3>New Loan Products Available</h3>
+          <p>GSAC now offers Livelihood Loans and Emergency Loans with lower interest rates for qualified members.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Ready to Join GSAC?</h2>
+    <p>Take the first step — complete your PMES online and register as a member today.</p>
+    <div class="cta-buttons">
+      <a href="pmes.html" class="btn btn-primary">Start PMES</a>
+      <a href="membership.html" class="btn btn-outline">Apply for Membership</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>GSAC</h4>
+        <p>Gubat Saint Anthony Cooperative — serving the community of Gubat, Sorsogon with integrity and dedication.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="pmes.html">PMES</a></li>
+          <li><a href="membership.html">Membership</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html">Savings Account</a></li>
+          <li><a href="services.html">Personal Loans</a></li>
+          <li><a href="services.html">Business Loans</a></li>
+          <li><a href="services.html">Emergency Loans</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <p>📍 Gubat, Sorsogon, Philippines</p><br>
+        <p>📞 (056) XXX-XXXX</p><br>
+        <p>✉️ gsac@example.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Gubat Saint Anthony Cooperative (GSAC). All rights reserved. | Registered with CDA</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services - GSAC</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .service-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-bottom: 4rem;
+    }
+    .service-block.reverse { direction: rtl; }
+    .service-block.reverse > * { direction: ltr; }
+    .service-img {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 20px;
+      padding: 3rem;
+      text-align: center;
+      color: white;
+      font-size: 5rem;
+    }
+    .service-content h2 { color: var(--primary); font-size: 1.8rem; margin-bottom: 1rem; }
+    .service-content p { color: var(--gray); margin-bottom: 1.25rem; line-height: 1.8; }
+    .feature-list { list-style: none; }
+    .feature-list li { padding: 0.4rem 0; display: flex; gap: 0.75rem; color: var(--dark); }
+    .feature-list li::before { content: '✓'; color: var(--primary); font-weight: 700; }
+    .rates-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; }
+    .rates-table th {
+      background: var(--primary);
+      color: white;
+      padding: 0.85rem 1rem;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+    .rates-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--light-gray);
+      font-size: 0.9rem;
+    }
+    .rates-table tr:hover td { background: var(--light-bg); }
+    .rates-table tr:last-child td { border-bottom: none; }
+    @media (max-width: 768px) {
+      .service-block { grid-template-columns: 1fr; }
+      .service-block.reverse { direction: ltr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo (3).png" alt="GSAC Logo" />
+        <span>Gubat Saint Anthony Cooperative</span>
+      </a>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="pmes.html">PMES</a></li>
+        <li><a href="membership.html" class="nav-cta">Join Now</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-banner">
+    <h1>Our Services</h1>
+    <p>Financial products designed to help members save, grow, and thrive.</p>
+  </div>
+
+  <section>
+    <div class="container">
+
+      <!-- SAVINGS -->
+      <div class="service-block">
+        <div class="service-img">💰</div>
+        <div class="service-content">
+          <h2>Savings Account</h2>
+          <p>Build your financial future with GSAC's savings accounts. We offer competitive interest rates and flexible terms to help every member grow their savings.</p>
+          <ul class="feature-list">
+            <li>Minimum deposit of ₱200</li>
+            <li>Earn interest on your deposits</li>
+            <li>No maintaining balance penalty</li>
+            <li>Withdrawable anytime</li>
+            <li>Safe and insured deposits</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- SHARE CAPITAL -->
+      <div class="service-block reverse">
+        <div class="service-img">📊</div>
+        <div class="service-content">
+          <h2>Share Capital</h2>
+          <p>As a member-owner, you contribute to the cooperative's capital. Share capital entitles you to voting rights and a share in the cooperative's dividends and patronage refunds.</p>
+          <ul class="feature-list">
+            <li>Minimum of ₱500 share capital</li>
+            <li>Receive annual dividends</li>
+            <li>One member, one vote principle</li>
+            <li>Non-withdrawable (transfer only)</li>
+            <li>Grows as cooperative grows</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- LOANS -->
+      <div class="service-block">
+        <div class="service-img">🏦</div>
+        <div class="service-content">
+          <h2>Loan Products</h2>
+          <p>GSAC offers various loan products to meet the financial needs of our members — from personal to livelihood and emergency purposes.</p>
+          <table class="rates-table">
+            <thead>
+              <tr>
+                <th>Loan Type</th>
+                <th>Amount</th>
+                <th>Interest</th>
+                <th>Term</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Regular Loan</td>
+                <td>Up to ₱50,000</td>
+                <td>2% / month</td>
+                <td>Up to 12 months</td>
+              </tr>
+              <tr>
+                <td>Emergency Loan</td>
+                <td>Up to ₱10,000</td>
+                <td>1.5% / month</td>
+                <td>Up to 6 months</td>
+              </tr>
+              <tr>
+                <td>Livelihood Loan</td>
+                <td>Up to ₱30,000</td>
+                <td>1.75% / month</td>
+                <td>Up to 18 months</td>
+              </tr>
+              <tr>
+                <td>Educational Loan</td>
+                <td>Up to ₱20,000</td>
+                <td>1.5% / month</td>
+                <td>Up to 12 months</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- BENEFITS -->
+      <div class="service-block reverse">
+        <div class="service-img">🎁</div>
+        <div class="service-content">
+          <h2>Member Benefits</h2>
+          <p>Being a GSAC member comes with exclusive benefits that support you and your family throughout the year.</p>
+          <ul class="feature-list">
+            <li>Annual dividend earnings</li>
+            <li>Patronage refund</li>
+            <li>Death aid benefit</li>
+            <li>Loan insurance coverage</li>
+            <li>Access to cooperative seminars and trainings</li>
+            <li>Voting rights in general assemblies</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="background:var(--light-bg); text-align:center; padding:60px 2rem;">
+    <h2 style="color:var(--primary); font-size:1.8rem; margin-bottom:1rem;">Ready to Avail Our Services?</h2>
+    <p style="color:var(--gray); margin-bottom:1.75rem;">You must be a member first. Complete your PMES and register today.</p>
+    <a href="pmes.html" class="btn btn-blue" style="margin-right:1rem;">Take PMES</a>
+    <a href="membership.html" class="btn btn-primary">Become a Member</a>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>GSAC</h4>
+        <p>Gubat Saint Anthony Cooperative — serving the community of Gubat, Sorsogon with integrity and dedication.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="pmes.html">PMES</a></li>
+          <li><a href="membership.html">Membership</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <p>📍 Gubat, Sorsogon, Philippines</p><br>
+        <p>📞 (056) XXX-XXXX</p><br>
+        <p>✉️ gsac@example.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Gubat Saint Anthony Cooperative (GSAC). All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
