@@ -96,7 +96,11 @@ try {
         exit;
     }
 
-    throw new Exception('PayMongo did not return a checkout URL. Please try again.');
+    // Temporary diagnostics: surface PayMongo's actual response shape so we can
+    // see why no redirect URL came back, instead of a generic message.
+    throw new Exception('PayMongo did not return a checkout URL. status=' . $status
+        . ' next_action=' . json_encode($nextAction)
+        . ' last_payment_error=' . json_encode($attach['data']['attributes']['last_payment_error'] ?? null));
 } catch (Exception $e) {
     http_response_code(500);
     echo json_encode(['error' => $e->getMessage()]);
