@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 require_once __DIR__ . '/paymongo.php';
 
 // The GSAC membership fee is fixed — never trust an amount from the client.
-const MEMBERSHIP_FEE_CENTAVOS = 80000; // PHP 800.00
+const MEMBERSHIP_FEE_CENTAVOS = 1000; // PHP 10.00
 
 $allowedMethods = ['gcash', 'paymaya', 'qrph'];
 

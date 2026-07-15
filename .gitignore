@@ -1,0 +1,5 @@
+# Never commit real PayMongo credentials
+php/config.php
+
+# Server-side payment ledger (contains applicant PII)
+php/data/*.log

@@ -17,7 +17,7 @@ try {
     $status = $intent['data']['attributes']['status'] ?? '';
 
     if ($status === 'succeeded') {
-        $ref  = 'GSAC-' . date('Y') . '-' . strtoupper(substr(md5($intentId), 0, 5));
+        $ref  = gsac_reference_from_intent($intentId);
         $name = $applicant ? trim($applicant['firstName'] . ' ' . $applicant['lastName']) : '';
         unset($_SESSION['gsac_applicant']);
 

@@ -579,91 +579,38 @@
 
             <!-- GCash -->
             <div id="pay-gcash" class="pay-detail">
-              <div style="text-align:center; padding:1.5rem; background:var(--light-bg); border-radius:12px; border:2px dashed #16a34a;">
-                <p style="font-weight:700; color:#16a34a; margin-bottom:0.75rem;">Scan QR Code to Pay via GCash</p>
-                <div style="width:160px; height:160px; background:white; border:2px solid #16a34a; border-radius:8px; margin:0 auto 1rem; display:flex; align-items:center; justify-content:center; font-size:0.75rem; color:var(--gray); text-align:center; padding:0.5rem;">
-                  📱 Place your<br>GCash QR Code here
-                </div>
-                <p style="font-size:0.85rem; color:var(--gray);">GCash No.: <strong>09XX-XXX-XXXX</strong></p>
-                <p style="font-size:0.85rem; color:var(--gray);">Account: <strong>Gubat Saint Anthony Coop</strong></p>
-              </div>
-              <div class="form-group" style="margin-top:1rem;">
-                <label>GCash Reference Number *</label>
-                <input type="text" id="gcashRef" placeholder="Enter 13-digit reference number" />
-              </div>
-              <div class="form-group">
-                <label>Upload Screenshot (optional)</label>
-                <input type="file" accept="image/*" />
+              <div style="text-align:center; padding:2rem 1.5rem; background:var(--light-bg); border-radius:12px; border:2px dashed #16a34a;">
+                <p style="font-size:2.5rem; margin-bottom:0.5rem;">💚</p>
+                <p style="font-weight:700; color:#16a34a; margin-bottom:0.5rem;">Pay with GCash</p>
+                <p style="font-size:0.85rem; color:var(--gray);">
+                  Clicking "Pay" will take you to the official GCash app/website to
+                  confirm your <strong>₱10.00</strong> payment securely via PayMongo.
+                </p>
               </div>
             </div>
 
             <!-- Maya -->
             <div id="pay-maya" class="pay-detail" style="display:none;">
-              <div style="text-align:center; padding:1.5rem; background:#f5f0ff; border-radius:12px; border:2px dashed #7c3aed;">
-                <p style="font-weight:700; color:#7c3aed; margin-bottom:0.75rem;">Scan QR Code to Pay via Maya</p>
-                <div style="width:160px; height:160px; background:white; border:2px solid #7c3aed; border-radius:8px; margin:0 auto 1rem; display:flex; align-items:center; justify-content:center; font-size:0.75rem; color:var(--gray); text-align:center; padding:0.5rem;">
-                  📱 Place your<br>Maya QR Code here
-                </div>
-                <p style="font-size:0.85rem; color:var(--gray);">Maya No.: <strong>09XX-XXX-XXXX</strong></p>
-                <p style="font-size:0.85rem; color:var(--gray);">Account: <strong>Gubat Saint Anthony Coop</strong></p>
-              </div>
-              <div class="form-group" style="margin-top:1rem;">
-                <label>Maya Reference Number *</label>
-                <input type="text" id="mayaRef" placeholder="Enter reference number" />
-              </div>
-              <div class="form-group">
-                <label>Upload Screenshot (optional)</label>
-                <input type="file" accept="image/*" />
+              <div style="text-align:center; padding:2rem 1.5rem; background:#f5f0ff; border-radius:12px; border:2px dashed #7c3aed;">
+                <p style="font-size:2.5rem; margin-bottom:0.5rem;">💜</p>
+                <p style="font-weight:700; color:#7c3aed; margin-bottom:0.5rem;">Pay with Maya</p>
+                <p style="font-size:0.85rem; color:var(--gray);">
+                  Clicking "Pay" will take you to the official Maya app/website to
+                  confirm your <strong>₱10.00</strong> payment securely via PayMongo.
+                </p>
               </div>
             </div>
 
             <!-- QR Ph -->
             <div id="pay-qrph" class="pay-detail" style="display:none;">
-              <div style="border:2px solid #E8372C; border-radius:14px; overflow:hidden;">
-
-                <!-- QR Ph Header -->
-                <div style="background:#E8372C; padding:0.85rem 1.25rem; display:flex; align-items:center; gap:0.75rem;">
-                  <div style="background:white; border-radius:6px; padding:0.2rem 0.5rem; font-weight:900; font-size:0.8rem; color:#E8372C; letter-spacing:0.5px;">QR<span style="color:#F5A623;">Ph</span></div>
-                  <span style="color:white; font-weight:700; font-size:0.9rem;">Scan with any banking app</span>
-                  <span style="margin-left:auto; background:rgba(255,255,255,0.2); color:white; font-size:0.75rem; font-weight:700; padding:0.2rem 0.6rem; border-radius:99px;" id="qrphTimer">15:00</span>
-                </div>
-
-                <!-- QR Code area -->
-                <div style="background:white; padding:1.5rem; text-align:center;">
-                  <p style="font-size:0.8rem; color:var(--gray); margin-bottom:1rem;">Amount to Pay</p>
-                  <p style="font-size:2rem; font-weight:800; color:#E8372C; margin-bottom:1.25rem;">₱800.00</p>
-
-                  <!-- Live QR code generated via QR server API -->
-                  <div style="display:inline-block; padding:12px; background:white; border:3px solid #E8372C; border-radius:12px; margin-bottom:1rem;">
-                    <img
-                      src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=GSACPH-QRPH-800-DEMO2026&color=E8372C&bgcolor=ffffff&qzone=1"
-                      alt="QR Ph Code"
-                      width="180" height="180"
-                      style="display:block; border-radius:4px;"
-                    />
-                  </div>
-
-                  <p style="font-size:0.8rem; color:var(--gray); margin-bottom:0.35rem;">Merchant: <strong>Gubat Saint Anthony Cooperative</strong></p>
-                  <p style="font-size:0.75rem; color:var(--gray); margin-bottom:1rem;">Reference: <strong id="qrphRefDisplay">GSAC-QRPH-0000</strong></p>
-
-                  <div style="background:#fff8f8; border:1px solid #fecaca; border-radius:8px; padding:0.75rem; font-size:0.78rem; color:#b91c1c; margin-bottom:1rem;">
-                    ⏳ QR code expires in <strong><span id="qrphTimerInline">15:00</span></strong>. Scan before it expires.
-                  </div>
-
-                  <div style="font-size:0.78rem; color:var(--gray); line-height:1.7;">
-                    Open your <strong>banking app</strong> (BDO, BPI, UnionBank, Metrobank, etc.)<br>
-                    or <strong>e-wallet</strong> (GCash, Maya) → Scan QR → Confirm ₱800.00
-                  </div>
-                </div>
-
-                <!-- After payment -->
-                <div style="background:#fafafa; border-top:1px solid #fde8e8; padding:1rem 1.25rem;">
-                  <p style="font-size:0.82rem; color:var(--gray); margin-bottom:0.6rem; font-weight:600;">After scanning and paying, enter your reference number:</p>
-                  <div class="form-group" style="margin-bottom:0.5rem;">
-                    <input type="text" id="qrphRef" placeholder="Bank / e-wallet reference number" />
-                  </div>
-                  <p style="font-size:0.75rem; color:var(--gray);">Powered by <strong>PayMongo</strong> · InstaPay / PESONet</p>
-                </div>
+              <div style="text-align:center; padding:2rem 1.5rem; background:#fff5f5; border-radius:12px; border:2px dashed #E8372C;">
+                <p style="font-size:2.5rem; margin-bottom:0.5rem;">🏛️</p>
+                <p style="font-weight:700; color:#E8372C; margin-bottom:0.5rem;">Pay with QR Ph</p>
+                <p style="font-size:0.85rem; color:var(--gray);">
+                  Clicking "Pay" will take you to a live QR code you can scan from any
+                  participating bank or e-wallet app to confirm your
+                  <strong>₱10.00</strong> payment securely via PayMongo.
+                </p>
               </div>
             </div>
 
@@ -701,9 +648,12 @@
               </div>
             </div>
 
+            <!-- Payment error -->
+            <div id="paymentError" style="display:none; background:#fef2f2; border:1px solid #fecaca; color:#b91c1c; padding:0.75rem 1rem; border-radius:8px; font-size:0.85rem; margin-top:1rem;"></div>
+
             <!-- Pay Button -->
-            <button class="btn btn-primary" onclick="submitPayment()" style="width:100%; margin-top:1.25rem; font-size:1rem; padding:1rem;">
-              Pay ₱800.00 →
+            <button class="btn btn-primary" id="btnPay" onclick="submitPayment()" style="width:100%; margin-top:1.25rem; font-size:1rem; padding:1rem;">
+              Pay ₱10.00 →
             </button>
             <button class="btn" onclick="showPanel('panelInfo'); setStep(3);" style="width:100%; margin-top:0.75rem; background:var(--light-gray); color:var(--dark);">
               ← Back
@@ -716,10 +666,8 @@
             <div style="background:var(--white); border-radius:16px; padding:1.5rem; box-shadow:var(--shadow); border:1px solid var(--light-gray); margin-bottom:1rem;">
               <h4 style="color:var(--primary); margin-bottom:1rem; font-size:1rem;">Order Summary</h4>
               <div id="payee-name" style="background:var(--light-bg); border-radius:8px; padding:0.75rem; margin-bottom:1rem; font-size:0.9rem;"></div>
-              <div style="display:flex; justify-content:space-between; padding:0.5rem 0; border-bottom:1px solid var(--light-gray); font-size:0.9rem;"><span>Membership Fee</span><span>₱100.00</span></div>
-              <div style="display:flex; justify-content:space-between; padding:0.5rem 0; border-bottom:1px solid var(--light-gray); font-size:0.9rem;"><span>Minimum Share Capital</span><span>₱500.00</span></div>
-              <div style="display:flex; justify-content:space-between; padding:0.5rem 0; border-bottom:1px solid var(--light-gray); font-size:0.9rem;"><span>Initial Savings Deposit</span><span>₱200.00</span></div>
-              <div style="display:flex; justify-content:space-between; padding:0.75rem 0 0; font-size:1.05rem; font-weight:800; color:var(--primary);"><span>Total</span><span>₱800.00</span></div>
+              <div style="display:flex; justify-content:space-between; padding:0.5rem 0; border-bottom:1px solid var(--light-gray); font-size:0.9rem;"><span>Membership Application Fee</span><span>₱10.00</span></div>
+              <div style="display:flex; justify-content:space-between; padding:0.75rem 0 0; font-size:1.05rem; font-weight:800; color:var(--primary);"><span>Total</span><span>₱10.00</span></div>
             </div>
             <div style="background:var(--light-bg); border-radius:12px; padding:1.25rem; font-size:0.82rem; color:var(--gray); line-height:1.6;">
               🔒 Your payment is secured by PayMongo. GSAC does not store your card details.
@@ -795,7 +743,6 @@
 
     // ===== Payment method tabs =====
     let activeTab = 'gcash';
-    let qrphTimerInterval = null;
 
     function selectTab(method) {
       activeTab = method;
@@ -805,72 +752,102 @@
       });
       document.getElementById('tab-' + method).classList.add('active');
       document.getElementById('pay-' + method).style.display = 'block';
-
-      if (method === 'qrph') startQrPhTimer();
-      else stopQrPhTimer();
+      hidePaymentError();
     }
 
-    // ===== QR Ph countdown timer (15 min) =====
-    function startQrPhTimer() {
-      stopQrPhTimer();
-      // Generate a unique reference for this QR session
-      const ref = 'GSAC-QRPH-' + Math.floor(1000 + Math.random() * 9000);
-      const refEl = document.getElementById('qrphRefDisplay');
-      if (refEl) refEl.textContent = ref;
-
-      let seconds = 15 * 60;
-      function tick() {
-        const m = String(Math.floor(seconds / 60)).padStart(2,'0');
-        const s = String(seconds % 60).padStart(2,'0');
-        const display = m + ':' + s;
-        const t1 = document.getElementById('qrphTimer');
-        const t2 = document.getElementById('qrphTimerInline');
-        if (t1) t1.textContent = display;
-        if (t2) t2.textContent = display;
-        if (seconds <= 0) {
-          stopQrPhTimer();
-          if (t1) t1.textContent = 'Expired';
-          if (t2) t2.textContent = 'Expired — please refresh';
-        }
-        seconds--;
-      }
-      tick();
-      qrphTimerInterval = setInterval(tick, 1000);
+    function hidePaymentError() {
+      const box = document.getElementById('paymentError');
+      box.style.display = 'none';
+      box.textContent = '';
     }
 
-    function stopQrPhTimer() {
-      if (qrphTimerInterval) { clearInterval(qrphTimerInterval); qrphTimerInterval = null; }
+    function showPaymentError(msg) {
+      const box = document.getElementById('paymentError');
+      box.textContent = msg;
+      box.style.display = 'block';
     }
+
+    // Maps our tab names to PayMongo's payment_method "type" values
+    const PAYMONGO_METHOD_MAP = { gcash: 'gcash', maya: 'paymaya', qrph: 'qrph' };
 
     // ===== Submit Payment =====
-    function submitPayment() {
-      if (activeTab === 'gcash' && !document.getElementById('gcashRef').value.trim()) {
-        alert('Please enter your GCash reference number.'); return;
-      }
-      if (activeTab === 'maya' && !document.getElementById('mayaRef').value.trim()) {
-        alert('Please enter your Maya reference number.'); return;
-      }
-      if (activeTab === 'qrph' && !document.getElementById('qrphRef').value.trim()) {
-        alert('Please enter your bank / e-wallet reference number after paying.'); return;
-      }
-      stopQrPhTimer();
+    async function submitPayment() {
+      hidePaymentError();
+
       if (activeTab === 'card') {
         if (!document.getElementById('cardName').value.trim() ||
             !document.getElementById('cardNumber').value.trim() ||
             !document.getElementById('cardExpiry').value.trim() ||
             !document.getElementById('cardCvv').value.trim()) {
-          alert('Please fill in all card details.'); return;
+          showPaymentError('Please fill in all card details.'); return;
         }
+        showPaymentError('Card payments are not enabled yet. Please choose GCash, Maya, QR Ph, or pay at the office.');
+        return;
       }
-      // Generate reference and show done panel
-      const ref = 'GSAC-2026-' + Math.floor(10000 + Math.random() * 90000);
-      const name = document.getElementById('mi_firstName').value + ' ' + document.getElementById('mi_lastName').value;
+
+      if (activeTab === 'counter') {
+        finalizeApplication('GSAC-' + new Date().getFullYear() + '-' + Math.floor(10000 + Math.random() * 90000));
+        return;
+      }
+
+      const paymongoMethod = PAYMONGO_METHOD_MAP[activeTab];
+      if (!paymongoMethod) return;
+
+      const btn = document.getElementById('btnPay');
+      const originalLabel = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Redirecting to ' + activeTab.toUpperCase() + '…';
+
+      try {
+        const res = await fetch('php/create-payment.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            method: paymongoMethod,
+            applicant: {
+              firstName: document.getElementById('mi_firstName').value.trim(),
+              lastName: document.getElementById('mi_lastName').value.trim(),
+              email: document.getElementById('mi_email').value.trim(),
+              mobile: document.getElementById('mi_mobile').value.trim(),
+            },
+          }),
+        });
+        const data = await res.json();
+        if (!res.ok || !data.redirect_url) {
+          throw new Error(data.error || 'Could not start payment. Please try again.');
+        }
+        window.location.href = data.redirect_url;
+      } catch (err) {
+        showPaymentError(err.message);
+        btn.disabled = false;
+        btn.textContent = originalLabel;
+      }
+    }
+
+    function finalizeApplication(ref, name) {
+      const applicantName = name || (document.getElementById('mi_firstName').value + ' ' + document.getElementById('mi_lastName').value);
       document.getElementById('doneRefNo').textContent = ref;
-      document.getElementById('doneApplicantName').textContent = name;
+      document.getElementById('doneApplicantName').textContent = applicantName;
       document.getElementById('doneDate').textContent = new Date().toLocaleDateString('en-PH', { year:'numeric', month:'long', day:'numeric' });
       showPanel('panelDone');
       setStep(5);
     }
+
+    // ===== Handle the redirect back from PayMongo's checkout =====
+    (function handlePaymentReturn() {
+      const params = new URLSearchParams(window.location.search);
+      const paid = params.get('paid');
+      if (paid === 'success') {
+        finalizeApplication(params.get('ref') || 'GSAC-2026-00000', params.get('name'));
+      } else if (paid === 'failed') {
+        showPanel('panelPayment');
+        setStep(4);
+        showPaymentError('Your payment could not be completed (' + (params.get('reason') || 'unknown error') + '). Please try again.');
+      }
+      if (paid) {
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+    })();
 
     // ===== Card input formatters =====
     function fmtCard(el) {

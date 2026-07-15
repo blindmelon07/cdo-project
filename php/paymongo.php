@@ -39,3 +39,12 @@ function paymongo_request($method, $path, $body = null) {
 
     return $data;
 }
+
+/**
+ * Deterministic, human-facing reference number derived from a Payment Intent id.
+ * Used by both payment-return.php (shown to the applicant) and webhook.php
+ * (logged server-side) so the two always agree on the same reference.
+ */
+function gsac_reference_from_intent($intentId) {
+    return 'GSAC-' . date('Y') . '-' . strtoupper(substr(md5($intentId), 0, 5));
+}
