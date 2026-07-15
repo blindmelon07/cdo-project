@@ -81,24 +81,38 @@ try {
         ],
     ]);
 
-    $nextAction  = $attach['data']['attributes']['next_action'] ?? null;
-    $redirectUrl = $nextAction['redirect']['url'] ?? null;
+    $nextAction = $attach['data']['attributes']['next_action'] ?? null;
+    $actionType = $nextAction['type'] ?? null;
 
-    if ($redirectUrl) {
-        echo json_encode(['redirect_url' => $redirectUrl]);
+    // GCash / Maya: PayMongo hands back a hosted checkout URL to redirect to.
+    if ($actionType === 'redirect' && !empty($nextAction['redirect']['url'])) {
+        echo json_encode([
+            'type' => 'redirect',
+            'redirect_url' => $nextAction['redirect']['url'],
+        ]);
         exit;
     }
 
-    // Rare: some test-mode flows resolve without a redirect step.
+    // QR Ph: PayMongo hands back a QR code image to render on our own page —
+    // there is no redirect. The client must poll check-payment.php for status.
+    if ($actionType === 'consume_qr' && !empty($nextAction['code']['image_url'])) {
+        echo json_encode([
+            'type' => 'qr',
+            'qr_image' => $nextAction['code']['image_url'],
+            'expires_at' => $nextAction['code']['expires_at'] ?? null,
+            'payment_intent_id' => $intentId,
+        ]);
+        exit;
+    }
+
+    // Rare: some test-mode flows resolve without any further action.
     $status = $attach['data']['attributes']['status'] ?? '';
     if ($status === 'succeeded') {
-        echo json_encode(['redirect_url' => $returnUrl . '?payment_intent_id=' . $intentId]);
+        echo json_encode(['type' => 'redirect', 'redirect_url' => $returnUrl . '?payment_intent_id=' . $intentId]);
         exit;
     }
 
-    // Temporary diagnostics: surface PayMongo's actual response shape so we can
-    // see why no redirect URL came back, instead of a generic message.
-    throw new Exception('PayMongo did not return a checkout URL. status=' . $status
+    throw new Exception('PayMongo did not return a checkout URL or QR code. status=' . $status
         . ' next_action=' . json_encode($nextAction)
         . ' last_payment_error=' . json_encode($attach['data']['attributes']['last_payment_error'] ?? null));
 } catch (Exception $e) {
